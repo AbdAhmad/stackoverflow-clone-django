@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Complete Your Profile {% endblock %}
+
+{% block content %}
+
+<div class="col-md-8 offset-md-2">
+  <div class="card">
+      <div class="card-header text-center">
+          <div class="card-title">
+              <h4>Complete Your Profile</h4>
+          </div>
+      </div>
+      <div class="card-body">
+          <form method="post">
+              {% csrf_token %}
+              {{form|crispy}}
+              <div class="d-grid gap-2">
+                  <button class="btn btn-outline-danger" type="submit">Save Changes</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

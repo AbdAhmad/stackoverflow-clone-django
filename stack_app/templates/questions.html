@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %} Stack Overflow - Where Developers Learn, Share, &amp; Build Careers {% endblock %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="p-2">
+            <h3>Questions</h3>
+            <nav>
+                <ul class="pagination pagination-sm"> 
+                    <li class="page-item {% if marked == 'latest' %} active {% endif %}"><a class="page-link" href="?q=latest">Latest</a></li>
+                    <li class="page-item {% if marked == 'mostviewed' %} active {% endif %}"><a class="page-link" href="?q=mostviewed">Most viewed</a></li>
+                </ul>
+            </nav>
+            <a href="{% url 'ask' %}"><button class="btn btn-primary">Ask Question</button></a>
+        </div>
+        {% if questions_dict %}
+        <div class="card card-ques">
+            <div class="card-header">
+                {% for question, ans_votes in questions_dict.items %}
+                <div class="row mt-2">
+                    <div class="col-12 col-md-4">
+                        <div class="text-center ques-duv">
+                            <div class="ques-duv2">{{ans_votes.1}}<br>Votes</div>
+                            <div class="ques-duv2">{{ans_votes.0}}<br>Answers</div>
+                            <div class="ques-duv2">{{question.views}}<br>Views</div>    
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-8">
+                        <div class="mb-2 ques-title">
+                            <h5><a href="{% url 'question' question.slug %}">{{question.title}}</a></h5>
+                        </div>
+                        <div id="tag_div" class="mb-2">
+                            {% for t in question.tags.all %}
+                            <button class="btn btn-outline-primary btn-sm">{{t.tag_word}}</button>
+                            {% endfor %}
+                        </div>
+                        <div id="author_div">
+                            <small>Asked on <strong> {{question.created_at}} by <a href="{% url 'profile' question.author %}">{{question.author}}</a></strong></small>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="card"> 
+            <div class="card-header text-center">
+                <div class="card-title">
+                <h3>No Questions</h3>
+                </div>
+            </div>
+            <div class="card-body">        
+            <form action="{% url 'ask' %}">
+                <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="submit">Ask Question</button>
+                </div>
+            </form> 
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

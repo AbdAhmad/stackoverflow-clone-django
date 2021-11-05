@@ -1,0 +1,120 @@
+nav{
+    margin-bottom: 30px;
+}
+
+.textarea{
+    white-space: pre-wrap; 
+}
+
+
+.card-ques{
+    margin-top: -85px;
+}
+
+.container{
+    margin-top: 100px;
+}
+
+.profile_info{
+    font-size:18px; 
+    font-style: italic;
+}
+
+.p-2{
+    display: flex;
+    justify-content: space-between;
+    white-space: pre-wrap; 
+  
+}
+
+.ques-body{
+    white-space: pre;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+.triangle-up {
+    width: 0;
+    height: 0;
+    border: solid 22px;
+    border-color:  transparent  transparent rgb(158, 149, 149) transparent;
+}
+
+.triangle-down {
+    width: 0;
+    height: 0;
+    border: solid 22px;
+    border-color: rgb(158, 149, 149) transparent  transparent  transparent;
+}
+
+.ques-duv{
+   height:120px;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+}
+
+.ques-duv2{
+    flex: 0.35;
+}
+
+.ques-title{
+    max-height: 70px;
+    overflow: hidden;
+}
+
+#profile_img{
+    width: 150px; 
+    height: 150px;
+}
+
+#profile_div1{
+    min-height: 150px;
+}
+
+#profile_div2{
+    position: relative;
+}
+
+
+#tag_div{
+    max-height: 40px;
+    overflow: hidden;
+}
+
+#author_div{
+    display: flex;
+    align-items:flex-end; 
+    flex-direction: column;
+}
+
+.votes{
+    display: flex;
+    flex-direction: row;
+}
+
+.votes-inner{
+   flex:0.1;
+   display: flex; 
+   justify-content: center;
+}
+
+.votes-count{
+    width: 100%;
+    text-align: center;
+}
+
+.ans-body{
+    flex:0.8;
+    overflow-x: scroll;
+}
+
+.author-div-outer{
+    display: flex;
+    justify-content:flex-end;
+}
+
+.m-2{
+    overflow-x: scroll;
+}

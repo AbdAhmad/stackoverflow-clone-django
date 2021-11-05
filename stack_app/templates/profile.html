@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+
+    <div class="col-md-12">
+        <div class="card">
+          <div class="card-header text-center">
+            <div class="card-title">
+                <h4><b><i>{{profile.name}}</i></b></h4>
+            </div>
+        </div>
+            <div class="card-body">
+              <p class="card-text"><i class="fa fa-envelope profile_info"> {{profile.email}}</i></p>
+              <p class="card-text"><i class="fa fa-map-marker profile_info"> {{profile.location}}</i></p>
+              <p class="card-text"><i class="fa fa-info-circle profile_info"> {{profile.about_me}}</i></p>
+            </div>
+          </div>
+          
+          {% if authenticated %}
+       
+          <form action="{% url 'edit_profile' profile.id %}">
+            <div class="d-grid gap-2">
+                <button class="btn btn-outline-secondary" type="submit">Complete Your Profile</button>
+            </div>
+        </form>
+
+        {% endif %}
+    </div>
+  
+  <div class="row mt-2" >
+    <div class="col-12 col-md-5 mb-2">
+      <br>
+        <h5>{{questions.count}} {% if questions.count == 1 %} Question {% else %} Questions {% endif %}</h5>
+        <hr>
+        <div>
+          {% for question in questions %}
+        <div class="mt-2">
+            <a href="{% url 'question' question.slug %}"> 
+              {{question.title}} 
+            </a>
+            {% if authenticated %}
+              <div>
+              <a href="{% url 'edit_ques' question.slug %}"><button class="btn btn-outline-success btn-sm">Edit</button></a>
+              <a href="{% url 'delete_ques' question.slug %}"><button class="btn btn-outline-danger btn-sm">Delete</button></a>
+            </div>
+            {% endif %}
+        </div>
+        <hr>
+          {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-12 col-md-5">
+      <br>
+        <h5>{{answers.count}} {% if answers.count == 1 %} Answer {% else %} Answers {% endif %}</h5>
+        <hr>
+        <div>
+            {% for answer in answers %}
+            <div class="mt-2">
+                <a href="{% url 'question' answer.question_to_ans.slug %}">
+                  {{answer.ans}} 
+                </a>
+                {% if authenticated %}
+                <div>
+                  <a href="{% url 'edit_ans' answer.id %}"><button class="btn btn-outline-success btn-sm">Edit</button></a>
+                  <a href="{% url 'delete_ans' answer.id %}"><button class="btn btn-outline-danger btn-sm">Delete</button></a>
+                </div>
+                {% endif %}
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% crispy form form.helper %}
+
+{% block title %} {{question.title}} {% endblock %}
+
+{% block content %}
+
+    <div class="col-md-12">
+        <h2>{{question.title}}</h2>
+        <p class="p-2">Asked {{question.created_at}}       Viewed {{question.views}} times</p>
+        <hr>
+        <div class="row">
+            <div class="votes">
+                <div class="pt-2 votes-inner">
+                    <div>
+                        <a href="{% url 'upvote_ques' question.id %}"><div class="triangle-up"></div></a>
+                        <div class="pt-1 pb-1 votes-count">{{ques_votes}}</div>
+                        <a href="{% url 'downvote_ques' question.id %}"><div class="triangle-down"></div></a>
+                    </div>
+                </div>
+                <div class="col-md-10 offset-1">
+                    <div style="white-space: pre-wrap;">{{question.body}}</div>
+                </div>
+            </div>
+        </div>      
+        <br>
+        <div class="row">
+            <div id="tag_div" class="mb-2">
+                {% for tag in question.tags.all %}
+                <button class="btn btn-outline-primary btn-sm">{{tag.tag_word}}</button>
+                {% endfor %}
+            </div>          
+            <div class="author-div-outer">
+                <div id="author_div">
+                    <small>asked on <strong> {{question.created_at}} by <a href="{% url 'profile' question.author%}">{{question.author}}</a></strong></small>
+                </div>
+            </div>
+            {% if authenticated %}
+            <div>
+                <a href="{% url 'edit_ques' question.slug %}"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
+                <a href="{% url 'delete_ques' question.slug %}"><button class="btn btn-outline-danger btn-sm">Delete</button></a>
+            </div>
+            {% endif %}
+        </div>
+        <hr>
+        <div>
+           
+        <h3>{{answers.count}} {% if answers.count == 1 %} Answer {% else %} Answers {% endif %}</h3>
+        {% for answer, ans_votes in answers_votes.items %}
+        <div class="row">
+            <div class="votes">
+                <div class="pt-2 votes-inner">
+                    <div>
+                        <a href="{% url 'upvote_ans' answer.id %}"><div class="triangle-up"></div></a>
+                        <div class="pt-1 pb-1 votes-count">{{ans_votes}}</div>
+                        <a href="{% url 'downvote_ans' answer.id %}"><div class="triangle-down"></div></a>
+                    </div>
+                </div>
+                <div class="col-md-10 offset-1">
+                    <div style="white-space: pre-wrap;">{{answer.ans}}</div>
+                </div>
+            </div>
+        </div>
+
+            <div>                     
+                <div class="author-div-outer">
+                    <div id="author_div">
+                        <small>answered on {{answer.created_at}} by <a href="{% url 'profile' answer.answered_by %}">{{answer.answered_by}}</a></small>
+                    </div>
+                </div>
+            </div>
+        <hr>
+        {% endfor %}
+        </div>
+            <div class="m-2">
+                <form method="POST">
+                    {% csrf_token %}
+                    <h5>Your Answer</h5>
+                    {{ form.ans|as_crispy_field }}
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" type="submit">Post Your Answer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

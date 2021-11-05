@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Edit Answer {% endblock %}
+
+{% block content %}
+
+<div class="col-md-12">
+    <h2>{{question.title}}</h2>
+    <p class="p-2">Asked {{question.created_at}}       Viewed {{question.views}} times</p>
+    <hr>
+    <div class="votes">
+        <div class="pt-2 votes-inner">
+            <div>
+                <a href="{% url 'upvote_ques' question.id %}"><div class="triangle-up"></div></a>
+                <div class="pt-1 pb-1 votes-count">{{ques_votes}}</div>
+                <a href="{% url 'downvote_ques' question.id %}"><div class="triangle-down"></div></a>
+            </div>
+        </div>
+        <pre>
+            {{question.body}}
+        </pre>
+    </div>
+    <br>
+    <div class="row">
+        <div id="tag_div" class="mb-2">
+            {% for tag in question.tags.all %}
+            <button class="btn btn-outline-primary btn-sm">{{tag.tag_word}}</button>
+            {% endfor %}
+        </div>          
+        <div class="author-div-outer">
+            <div id="author_div">
+                <small>asked on <strong> {{question.created_at}} by <a href="{% url 'profile' question.author%}">{{question.author}}</a></strong></small>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div>
+
+<form method="post">
+   {% csrf_token %}
+   {{form|crispy}}
+    <div class="d-grid gap-2">
+        <button class="btn btn-outline-success" type="submit">Save</button>
+    </div>
+</form>
+
+{% endblock %}
