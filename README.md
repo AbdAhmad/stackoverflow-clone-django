@@ -1,6 +1,6 @@
 # StackOverflow Clone
 
-The aim of the project is to implement all the basic and necesssary functionalities of [Stackoverflow](https://stackoverflow.com/)
+The aim of the project is to implement the core functionalities of [Stackoverflow](https://stackoverflow.com/)
 
 ### About Stackoverflow
 Stackoverflow is an open community for anyone who codes. You can ask questions related to programming and even help others by answering their questions. Stackoverflow is used worldwide by millions of developers.
