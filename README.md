@@ -16,7 +16,6 @@ Stackoverflow is an open community for anyone who codes. You can ask questions r
 * Edit and Delete your own questions and answers
 * Search questions
 
-### This project was hosted on PythonAnywhere : [Visit](http://abdulla8.pythonanywhere.com/)
 
 ## Tech Stack
 * Frontend : HTML, CSS, Bootstrap and JavaScript
@@ -61,7 +60,6 @@ You are done with the setup now!
 * [Django Documentation](https://docs.djangoproject.com/en/3.2/)
 * [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 * [Stackoverflow](https://stackoverflow.com/)
-* [PythonAnywhere](https://www.pythonanywhere.com/)
 
 ## Developed by [Abdulla Ahmad](https://github.com/AbdAhmad)
 
